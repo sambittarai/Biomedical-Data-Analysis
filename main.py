@@ -41,7 +41,7 @@ d0, d1, d2 = vol.meta['sampling']
 #vol.meta.keys() - prints all the keys of the meta data
 
 #Field of view (FOV) - Total amount of space covered along each axis by the image
-n0*d0, n1*d1, n2*d2
+FOV = (n0*d0, n1*d1, n2*d2)
 
 
 
