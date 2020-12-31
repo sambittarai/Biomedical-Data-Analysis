@@ -53,6 +53,13 @@ d0, d1, d2 = vol.meta['sampling']
 #Field of view (FOV) - Total amount of space covered along each axis by the image
 FOV = (n0*d0, n1*d1, n2*d2)
 
+#3 Modifying the aspect ratio
+#This will result in a properly proportioned image, failing to adjust this aspect ratio will result in a distorted image.
+im = vol[:,:,100]
+d0, d1, d2 = vol.meta['sampling']
+asp = d0/d1
+plt.imshow(im, cmap="gray", aspect=asp)
+plt.show()
 
 
 
