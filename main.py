@@ -22,7 +22,7 @@ im2 = imageio.imread('chest-001.dcm')
 im3 = imageio.imread('chest-002.dcm')
 
 vol_arr = np.stack([im1, im2, im3])
-vol.shape # (3, 512, 512)
+vol_arr.shape # (3, 512, 512)
 
 #2 Loading volumes directly from the disk
 '''
@@ -33,15 +33,27 @@ imageio.volread()
 os.listdir('chest-data') #['chest-000.dcm', 'chest-001.dcm', ..., 'chest-049.dcm']
 
 vol = imageio.volread('chest-data')
-n0, n1, n2 = vol.shape #(50, 512, 512)
-
-#Sampling rate - physical space covered by each element
-d0, d1, d2 = vol.meta['sampling'] 
 #vol.meta - prints all the meta data
 #vol.meta.keys() - prints all the keys of the meta data
 
+#Plotting multiple images at once
+fig, axes = plt.subplots(nrows=1, ncols=3)
+axes[0].imshow(vol[0], cmap="gray")
+axes[1].imshow(vol[10], cmap="gray")
+axes[2].imshow(vol[20], cmap="gray")
+
+for ax in axes:
+	ax.axis('off')
+plt.show()
+
+#array shape
+n0, n1, n2 = vol.shape #(50, 512, 512)
+#Sampling rate - physical space covered by each element
+d0, d1, d2 = vol.meta['sampling'] 
 #Field of view (FOV) - Total amount of space covered along each axis by the image
 FOV = (n0*d0, n1*d1, n2*d2)
+
+
 
 
 
