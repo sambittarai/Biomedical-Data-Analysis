@@ -48,13 +48,14 @@ plt.show()
 
 #array shape
 n0, n1, n2 = vol.shape #(50, 512, 512)
-#Sampling rate - physical space covered by each element
+#Sampling rate - physical space covered by each element. However, unequal sampling rates can create distorted images.
 d0, d1, d2 = vol.meta['sampling'] 
 #Field of view (FOV) - Total amount of space covered along each axis by the image
 FOV = (n0*d0, n1*d1, n2*d2)
 
 #3 Modifying the aspect ratio
 #This will result in a properly proportioned image, failing to adjust this aspect ratio will result in a distorted image.
+#Changing the aspect ratio can address this by increasing the width of one of the dimension.
 im = vol[:,:,100]
 d0, d1, d2 = vol.meta['sampling']
 asp = d0/d1
